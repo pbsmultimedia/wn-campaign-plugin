@@ -1,6 +1,6 @@
 <?php namespace Pbs\Campaign\Console;
 
-use Winter\Storm\Console\Command;
+use Illuminate\Console\Command;
 use Pbs\Campaign\Models\Settings as Settings;
 
 class SeedSettings extends Command
