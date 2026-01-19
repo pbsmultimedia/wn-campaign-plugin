@@ -43,7 +43,7 @@ class Newsletters extends Controller
     // disable fields an relations if already sent
     public function formExtendFields($form)
     {
-        if ($form->model && $form->model->status === NewsletterStatus::Finished->value) {
+        if ($form->model && $form->model->status === NewsletterStatus::Finished) {
             foreach ($form->getFields() as $field) {
                 $field->readOnly = true;
                 // this did the trick on repeater fields!
@@ -72,7 +72,7 @@ class Newsletters extends Controller
     {
         $newsletter = $id ? Newsletter::find($id) : new Newsletter();
         $newsletter->fill(post('Newsletter'));
-        $newsletter->status = NewsletterStatus::Finished->value;
+        $newsletter->status = NewsletterStatus::Finished;
         $newsletter->save();
         
         Flash::success('Newsletter has been finished! Create a campaign to send it.');

@@ -46,7 +46,7 @@ class Newsletter extends Model
 
     public function scopeIsFinished($query)
     {
-        return $query->where('status', NewsletterStatus::Finished->value);
+        return $query->where('status', NewsletterStatus::Finished);
     }
 
     // process links outside the send loop

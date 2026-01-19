@@ -76,7 +76,7 @@ class SeedCampaignData extends Command
             [
                 'title' => 'Welcome to Our Newsletter',
                 'content' => '<h1>Welcome to our newsletter!</h1><p>Thank you for subscribing to our newsletter.</p>',
-                'status' => NewsletterStatus::Finished->value
+                'status' => NewsletterStatus::Finished
             ],
             // ... rest of your newsletter data
         ];

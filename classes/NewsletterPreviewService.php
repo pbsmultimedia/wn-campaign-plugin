@@ -73,7 +73,7 @@ class NewsletterPreviewService
         // booleans: is_something 
         // https://wintercms.com/docs/develop/docs/architecture/developer-guide
         try {
-            $newsletter = Newsletter::where('is_public', true)->where('status', NewsletterStatus::Finished->value)->findOrFail($id);
+            $newsletter = Newsletter::where('is_public', true)->where('status', NewsletterStatus::Finished)->findOrFail($id);
         } catch (\Exception $e) {
             return 'Newsletter not found';
         }

@@ -189,7 +189,7 @@ class Campaigns extends Controller
     public function onCancel()
     {
         $campaign = Campaign::find(post('campaign_id'));
-        $campaign->status = CampaignStatus::Cancelled->value;
+        $campaign->status = CampaignStatus::Cancelled;
         $campaign->save();
         Flash::success('Campaign cancelled successfully.');
     }

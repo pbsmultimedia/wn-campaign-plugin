@@ -84,7 +84,7 @@ class SendCampaignEmail implements ShouldQueue
             return;
         }
 
-        if ($this->campaign->status === CampaignStatus::Cancelled->value) {
+        if ($this->campaign->status === CampaignStatus::Cancelled) {
             Log::info('Campaign canceled, aborting');
             return;
         }
@@ -148,10 +148,10 @@ class SendCampaignEmail implements ShouldQueue
                 // $headers->addTextHeader('List-Unsubscribe-Post', 'List-Unsubscribe=One-Click');
             });
 
-            $this->recipient->status = CampaignRecipientStatus::Sent->value;
+            $this->recipient->status = CampaignRecipientStatus::Sent;
 
         } catch (\Exception $e) {
-            $this->recipient->status = CampaignRecipientStatus::Failed->value;
+            $this->recipient->status = CampaignRecipientStatus::Failed;
             Log::error('Error sending email to ' . $this->recipient->email . ': ' . $e->getMessage());
         }
 
@@ -159,7 +159,7 @@ class SendCampaignEmail implements ShouldQueue
 
         if ($this->currentRecipient + 1 == $this->totalRecipients) {
             Log::info('Campaign ' . $this->campaign->id . ' is sent');            
-            $this->campaign->status = CampaignStatus::Sent->value;
+            $this->campaign->status = CampaignStatus::Sent;
             $this->campaign->save();
         }
     }
