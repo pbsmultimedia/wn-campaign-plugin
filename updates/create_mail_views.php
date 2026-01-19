@@ -71,14 +71,12 @@ class CreateMailViews extends Migration
                 preg_match('/^\s*@subject\s+(.*)$/m', $content, $match);
                 $subject = $match[1] ?? 'Email';
 
+                $layout = MailLayout::where('code', 'newsletter')->first();
                 MailTemplate::create([
                     'code'         => $code,
                     'subject'      => $subject,
                     'content_html' => $content,
-                    // does this match? if so, how?
-                    // there is some inconsistency, so leaving as is
-                    'layout'       => 'pbs.campaign::mail.layout-newsletter',
-                    // 'layout'       => 'newsletter',
+                    'layout_id'    => $layout ? $layout->id : null, 
                     'description'  => 'newsletter',
                 ]);
             }
