@@ -1,0 +1,9 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+import:
+    title: Import Subscribers
+    modelClass: Pbs\Campaign\Models\SubscriberImport
+    list: $/pbs/campaign/models/subscriber/columns.yaml
+    redirect: pbs/campaign/subscribers

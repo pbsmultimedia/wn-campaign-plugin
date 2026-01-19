@@ -1,0 +1,58 @@
+"1.0.0":
+  - "First version of Newsletter"
+
+"1.0.1":
+  - "Create subscribers table"
+  - create_subscribers_table.php
+
+"1.0.2":
+  - "Create newsletters table"
+  - create_newsletters_table.php
+
+"1.0.3":
+  - "Create lists table"
+  - create_lists_table.php
+
+"1.0.4":
+  - "Create list-subscriber pivot table"
+  - create_list_subscriber_pivot.php
+
+"1.0.5":
+  - "Create campaigns table"
+  - create_campaigns_table.php
+
+"1.0.6":
+  - "Create campaign recipients table"
+  - create_campaign_recipients_table.php
+
+"1.0.7":
+  - "Create campaign links table"
+  - create_campaign_links_table.php
+
+"1.0.8":
+  - "Create campaign clicks table"
+  - create_campaign_clicks_table.php
+
+"1.0.9":
+  - "Create unsubscribe page"
+  - create_unsubscribe_page.php
+
+"1.0.10":
+  - "Create mail views"
+  - create_mail_views.php
+
+"1.0.11":
+  - "Create newsletter page"
+  - create_newsletter_page.php
+
+"1.0.12":
+  - "Create opens table"
+  - create_opens_table.php
+
+"1.0.13":
+  - "Create leads table"
+  - create_leads_table.php
+
+"1.0.14":
+  - "Add extended fields to blog posts"
+  - create_blog_extended_fields.php

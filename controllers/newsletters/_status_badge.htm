@@ -1,0 +1,61 @@
+<?php
+// Status badge partial for newsletter list
+$status = $record->status ?? 'draft';
+$colorClass = $record->status_color ?? 'secondary';
+?>
+
+<span class="badge badge-<?= $colorClass ?>">
+    <?php
+    switch ($status) {
+        case 'finished':
+            echo '<i class="icon-check"></i> Finished';
+            break;
+        case 'draft':
+            echo '<i class="icon-edit"></i> Draft';
+            break;
+        case 'published':
+            echo '<i class="icon-send"></i> Published';
+            break;
+        default:
+            echo '<i class="icon-circle"></i> ' . ucfirst($status);
+    }
+    ?>
+</span>
+
+<style>
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.badge-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.badge-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.badge i {
+    font-size: 10px;
+}
+</style>

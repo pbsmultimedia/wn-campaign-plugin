@@ -1,0 +1,16 @@
+columns:
+    id:
+        label: ID
+        searchable: true
+    campaign[subject]:
+        label: Campaign
+        searchable: true
+    subscriber[email]:
+        label: Subscriber
+        searchable: true
+    user_agent:
+        label: User Agent
+        searchable: true
+    created_at:
+        label: Opened At
+        type: datetime

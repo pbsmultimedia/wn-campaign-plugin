@@ -1,0 +1,24 @@
+# controllers/newsletters/config_list.yaml
+title: Newsletters
+modelClass: Pbs\Campaign\Models\Newsletter
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'        
+recordUrl: 'pbs/campaign/newsletters/update/:id'
+
+list:
+    columns:
+        id:
+            label: ID
+            sortable: true
+        title:
+            label: Title
+            searchable: true
+        status:
+            label: Status
+            sortable: true
+    defaultSort:
+        column: id
+        direction: desc

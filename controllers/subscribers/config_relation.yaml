@@ -1,0 +1,8 @@
+clicks:
+    label: Clicks
+    view:
+        list: $/pbs/campaign/models/click/columns.yaml
+        toolbarButtons: false
+    manage:
+        list: $/pbs/campaign/models/click/columns.yaml
+        toolbarButtons: false

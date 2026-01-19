@@ -1,0 +1,20 @@
+<p>
+  Sent
+  <span id="sentRecipients"><?= $sentRecipients ?></span>
+  of
+  <span id="totalRecipients"><?= $totalRecipients ?></span>
+  <?php if ($sentRecipients === $totalRecipients): ?>
+  - finished
+  <?php endif ?>
+</p>
+<div id="recipients"><?= $this->relationRender('recipients') ?></div>
+<?php if ($sentRecipients < $totalRecipients): ?>
+<button
+  type="button"
+  class="btn btn-default wn-icon-refresh"
+  data-request="onRefresh"
+  data-load-indicator="Updating..."
+>
+  Update
+</button>
+<?php endif ?>

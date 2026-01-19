@@ -1,0 +1,51 @@
+<div class="modal-dialog modal-lg size-huge">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="popup">&times;</button>
+            <h4 class="modal-title">Select Mailing Lists</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="list-widget">
+                <?= $listWidget->render() ?>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button
+                type="button"
+                class="btn btn-default"
+                data-dismiss="popup">
+                <?= e(trans('backend::lang.form.cancel')) ?>
+            </button>
+            <button
+                type="button"
+                class="btn btn-primary oc-icon-check"
+                onclick="attachSelectedLists()">
+                Attach Selected Lists
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+function attachSelectedLists() {
+    let checkedIds = $('.control-list input[type=checkbox]:checked').map(function() {
+        return $(this).val();
+    }).get();
+
+    if (checkedIds.length === 0) {
+        $.oc.flashMsg({text: 'Please select at least one mailing list', 'class': 'warning'});
+        return;
+    }
+
+    $.request('onAttachLists', {
+        data: { checked: checkedIds },
+        loading: $.oc.stripeLoadIndicator,
+        complete: function() {
+            $.oc.flashMsg({text: 'Lists attached!', 'class': 'success'});
+            $('.modal-header button.close').trigger('click');
+        }
+    });
+}
+</script>

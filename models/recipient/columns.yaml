@@ -1,0 +1,10 @@
+columns:
+  id:
+    label: Id
+    searchable: true
+  email:
+    label: Email
+    searchable: true
+  status:
+    label: Status
+    searchable: true

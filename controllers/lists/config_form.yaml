@@ -1,0 +1,14 @@
+# controllers/lists/config_form.yaml
+name: Lists
+modelClass: Pbs\Campaign\Models\MailingList
+form: $/pbs/campaign/models/mailinglist/fields.yaml
+defaultRedirect: pbs/campaign/lists
+create:
+    title: Create List
+    redirect: pbs/campaign/lists/update/:id
+    redirectClose: pbs/campaign/lists
+
+update:
+    title: Edit List
+    redirect: pbs/campaign/lists/update/:id
+    redirectClose: pbs/campaign/lists

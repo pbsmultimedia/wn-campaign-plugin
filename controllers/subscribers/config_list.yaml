@@ -1,0 +1,12 @@
+# controllers/subscribers/config_list.yaml
+title: Subscribers
+modelClass: Pbs\Campaign\Models\Subscriber
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'pbs/campaign/subscribers/update/:id'
+
+list: $/pbs/campaign/models/subscriber/columns.yaml
+            

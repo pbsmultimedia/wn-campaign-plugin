@@ -1,0 +1,104 @@
+# not used
+heading:
+    label: heading
+    name: heading
+    description: with title, description and an optional link
+    icon: icon-header
+    fields:
+        header:
+            label: heading
+            type: section
+            comment: title, description and an optional link
+        title:
+            name: title
+            description: title
+            icon: icon-header
+            label: title
+            type: text
+        text:
+            name: text
+            description: text
+            icon: icon-header
+            label: text
+            type: richeditor
+        link:
+            name: link
+            description: include a link
+            icon: icon-header
+            label: include link?
+            type: checkbox
+        #href:
+        #    name: page
+        #    description: choose page
+        #    label: page
+        #    type: dropdown
+        #    options: [\RainLab\Pages\Classes\Page, getPageOptions]
+        #    dependsOn: link
+        page:
+            label: page
+            type: staticpagepicker
+            trigger:
+                action: show
+                field: link
+                condition: checked
+slider:
+    name: slider
+    description: new slider
+    icon: icon-italic
+    fields:
+        album_photos:
+            label: images
+            type: repeater
+            form:
+                fields:
+                    image:
+                        label: image
+                        type: mediafinder
+                        mode: image
+                    title:
+                        label: title
+                        type: text
+testimonials:
+    name: testimonials
+    label: testimonials
+    description: testimonials
+    icon: icon-italic
+    fields:
+        header:
+            label: testimonials
+            type: section
+            comment: show testimonials
+form:
+    name: form
+    label: form
+    description: form
+    icon: icon-italic
+    fields:
+        header:
+            label: form
+            type: section
+            comment: form
+services:
+    name: services list
+    label: services list
+    description: show services list
+    icon: icon-italic
+    fields:
+        header:
+            label: services
+            type: section
+            comment: show services list
+
+map:
+    name: map
+    label: map
+    description: map
+    icon: icon-map
+    fields:
+        header:
+            label: map
+            type: section
+            comment: map iframe
+        iframe:
+            label: iframe
+            type: textarea

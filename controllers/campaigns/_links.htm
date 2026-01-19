@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table data">
+        <thead>
+            <tr class="no-margin">
+                <th class="list-cell-type-text"><span>URL</span></th>
+                <th class="list-cell-type-text"><span>Subscriber</span></th>
+                <th class="list-cell-type-text"><span>User Agent</span></th>
+                <th class="list-cell-type-datetime"><span>Clicked At</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($formModel->clicks()->with(['link', 'subscriber'])->get() as $click): ?>
+                <tr>
+                    <td><?= $click->link->original_url ?></td>
+                    <td><?= $click->subscriber->email ?></td>
+                    <td><?= $click->user_agent ?></td>
+                    <td><?= $click->created_at ?></td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>

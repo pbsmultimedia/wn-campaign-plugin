@@ -1,0 +1,7 @@
+name: Campaign Clicks
+modelClass: Pbs\Campaign\Models\Click
+form: $/pbs/campaign/models/click/fields.yaml
+create:
+    title: Create Campaign Click
+    redirect: pbs/campaign/clicks/update/:id
+    redirectClose: pbs/campaign/clicks

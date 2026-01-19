@@ -1,0 +1,17 @@
+<div class="scoreboard" id="visualizationsCounter">
+    <?= $this->makePartial('visualizations_counter', [
+        'counts' => $visualizations,
+        'filtered' => $filteredVisualizations
+    ]) ?>
+</div>
+<?= $this->listRender() ?>
+<script>
+$(function() {
+    // When filters or search change, refresh the counts
+    $(document).on('ajaxUpdate', function(event, context) {
+        if (context && (context.handler === 'listFilter::onFilterUpdate')) {
+            $.request('onGetFilteredRecords');
+        }
+    });
+});
+</script>

@@ -1,0 +1,48 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+lists:
+    label: Mailing Lists
+    required: true
+    view:
+        list: $/pbs/campaign/models/mailinglist/columns.yaml
+        toolbarButtons: add|remove
+    manage:
+        list: $/pbs/campaign/models/mailinglist/columns.yaml
+        showSearch: true
+recipients:
+    label: Recipients
+    view:
+        list: $/pbs/campaign/models/recipient/columns.yaml
+        toolbarButtons: false
+    manage:
+        list: $/pbs/campaign/models/recipient/columns.yaml     
+        toolbarButtons: false
+links:
+    label: Links
+    view:
+        list: $/pbs/campaign/models/link/columns.yaml
+        toolbarButtons: false
+    manage:
+        list: $/pbs/campaign/models/link/columns.yaml     
+        toolbarButtons: false
+visualizations:
+    label: Visualizations
+    view:
+        list: $/pbs/campaign/models/visualization/columns.yaml
+        toolbarButtons: false
+    manage:
+        list: $/pbs/campaign/models/visualization/columns.yaml     
+        toolbarButtons: false
+leads:
+    label: Leads
+    view:
+        list: $/pbs/campaign/models/lead/columns.yaml
+        toolbarButtons: false
+    manage:
+        list: $/pbs/campaign/models/lead/columns.yaml     
+        toolbarButtons: false
+
+    
+             

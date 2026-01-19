@@ -1,0 +1,43 @@
+# controllers/lists/config_relation.yaml
+subscribers:
+    label: Subscribers
+    view:
+        toolbarButtons: add|create|remove
+        recordUrl: pbs/campaign/subscribers/update/:id
+        list:            
+            columns:
+                name:
+                    label: Name
+                    searchable: true
+                    sortable: true
+                email:
+                    label: Email
+                    searchable: true
+                    sortable: true
+                status:
+                    label: Status
+                    sortable: true
+                subscribed:
+                    label: Subscribed
+                    type: switch
+                    sortable: true
+    manage:
+        form: $/pbs/campaign/models/subscriber/fields.yaml
+        list:
+            columns:
+                name:
+                    label: Name
+                    searchable: true
+                    sortable: true
+                email:
+                    label: Email
+                    searchable: true
+                    sortable: true
+                status:
+                    label: Status
+                    sortable: true
+                subscribed:
+                    label: Subscribed
+                    type: switch
+                    sortable: true
+        recordsPerPage: 20

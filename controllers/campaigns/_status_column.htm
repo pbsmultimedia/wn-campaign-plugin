@@ -1,0 +1,12 @@
+<?php
+    $status = $value;
+    $color = [
+        'draft' => '#999999',
+        'scheduled' => '#3498db',
+        'sending' => '#e67e22',
+        'sent' => '#27ae60'
+    ][$status] ?? '#999999';
+?>
+<span class="oc-icon-circle" style="color: <?= $color ?>">
+    <?= ucfirst($status) ?>
+</span>

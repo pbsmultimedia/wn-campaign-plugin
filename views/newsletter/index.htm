@@ -1,0 +1,93 @@
+subject = newsletter.subject
+layout = "newsletter"
+description = "newsletter"
+
+==
+
+{% for item in newsletter.content %}
+    {%- if item._group == 'heading' %}
+{{ item.text | parse(_context) | html_to_text | striptags | trim }}
+{{ "\n" }}
+    {%- endif %}
+    {%- if item._group == 'text' %}
+{{ item.text | parse(_context) | html_to_text | html_entity_decode | trim }}
+{{ "\n" }}
+    {%- endif %}
+    {%- if item._group == 'link' %}
+{{ item.link_label }}: {{ item.link | parse(_context) | trim }}
+{{ "\n" }}
+    {%- endif %}
+    {%- if item._group == 'feature_card' %}
+{{ item.title | trim }}
+{{ item.content | parse(_context) | html_to_text | striptags | trim }}
+{{ item.link_label }}: {{ item.link | parse(_context) | trim }}
+{{ "\n" }}
+    {%- endif %}
+{% endfor %}
+{{ "\n" }}
+unsubscribe: {{ newsletter.unsubscribe }}
+==
+
+{# 
+- template should come from config? or selected per campaign? 
+if so, a template shouldn't be deletable.. otherwise, it will break older newsletters
+#}
+
+{% macro featureCard(item, alignment, context) %}
+    {% set leftFirst = alignment == 'left' %}
+    {% set image %}
+        <td style="width: 50%; vertical-align: top;">            
+            <img src="{{ url('/storage/app/media/' ~ item.image) }}" alt="{{ item.caption }}" />
+        </td>
+    {% endset %}
+    {% set text %}
+        <td style="width: 50%; padding: 20px; vertical-align: top;">
+            <h1>{{ item.title }}</h1>
+            <p>{{ item.content | parse(context) }}</p>
+            {% if item.link %}
+                <a href="{{ item.link | parse(context) | raw }}" style="color: #f3525a;">{{ item.link_label }}</a>
+            {% endif %}
+        </td>
+    {% endset %}
+    <table style="width: 100%;">
+        <tr>
+            {{ leftFirst ? image : text }}
+            {{ leftFirst ? text : image }}
+        </tr>
+    </table>
+{% endmacro %}
+
+{# did tried partials, but it got complicated at several levels.. #}
+{# it seems they work, but have to be registered #}
+{% for item in newsletter.content %}
+    {% if item._group == 'heading' %}
+        <{{ item.level }}>{{ item.text }}</{{ item.level }}>
+    {% endif %}
+    {% if item._group == 'text' %}
+        <div class="item">    
+            {{ item.text | parse(_context) | raw }}
+        </div>
+    {% endif %}
+    {# think this partial is coming from the default instalation? #}
+    {% if item._group == 'link' %}
+        {% partial 'button' body=item.link_label url=(item.link | parse(_context)) %}
+    {% endif %}
+    {% if item._group == 'image' %}
+        <div class="item">    
+            <img src="{{ url('/storage/app/media/' ~ item.image) }}" alt="{{ item.caption }}"/>
+            <br>
+            {{ item.caption }}
+        </div>
+    {% endif %}
+    {% if item._group == 'hr' %}
+        <div style="height: 1px; background-color: #fec9cc; width: 100%; margin: 16px 0;"></div>
+    {% endif %}
+    {% if item._group == 'feature_card' %}
+        {{ _self.featureCard(item, item.alignment, _context) }}
+    {% endif %}
+{% endfor %}
+
+{# track visualizations (clearer than "open"..)#}
+{% if newsletter.beacon %}
+    <img src="{{ newsletter.beacon }}" width="1" height="1" />
+{% endif %}

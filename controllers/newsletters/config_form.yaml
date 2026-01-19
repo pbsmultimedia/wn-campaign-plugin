@@ -1,0 +1,15 @@
+# Form behavior configuration for Pbs\Newsletter\Controllers\Newsletter
+# Renders create/update forms for the Newsletter model
+
+name: Newsletter
+modelClass: Pbs\Campaign\Models\Newsletter
+form: $/pbs/campaign/models/newsletter/fields.yaml
+defaultRedirect: pbs/campaign/newsletters
+create:
+    title: Create Newsletter
+    redirect: pbs/campaign/newsletters/update/:id
+    redirectClose: pbs/campaign/newsletters
+update:
+    title: Edit Newsletter
+    redirect: pbs/campaign/newsletters/update/:id
+    redirectClose: pbs/campaign/newsletters

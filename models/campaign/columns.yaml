@@ -1,0 +1,36 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+    name:
+        label: Name
+        searchable: true
+    subject:
+        label: Subject
+        searchable: true
+    status:
+        label: Status
+        type: partial
+        path: $/pbs/campaign/controllers/campaigns/_status_column.htm
+    clicks_count:
+        label: Clicks
+        type: number
+        searchable: false
+        sortable: true
+    visualizations_count:
+        label: Visualizations
+        type: number
+        searchable: false
+        sortable: true
+    leads_count:
+        label: Leads
+        type: number
+        searchable: false
+        sortable: true
+    created_at:
+        label: Created
+        type: datetime
+        invisible: true

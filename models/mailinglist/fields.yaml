@@ -1,0 +1,7 @@
+fields:
+    name:
+        label: Name
+        span: left            
+    subscribers:
+        label: Subscribers
+        type: partial            

@@ -1,0 +1,15 @@
+scopes:
+  campaign:
+      modelClass: Pbs\Campaign\Models\Campaign
+      label: Campaign
+      type: group
+      # conditions: id in (:filtered)
+      nameFrom: idAndName
+      scope: filterCampaigns
+  # link:
+  #     modelClass: Pbs\Campaign\Models\CampaignLink
+  #     label: Link
+  #     type: group
+  #     # conditions: id in (:filtered)
+  #     nameFrom: original_url
+  #     scope: filterLinks

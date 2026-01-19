@@ -1,0 +1,20 @@
+columns:
+    id:
+        label: ID
+        searchable: true
+    campaign[name]:
+        label: Campaign
+        searchable: true
+    subscriber[email]:
+        label: Subscriber
+        searchable: true
+    link[original_url]:
+        label: Link
+        searchable: true
+    meta:
+        label: Meta
+        searchable: true
+        type: text
+    created_at:
+        label: Created At
+        type: datetime

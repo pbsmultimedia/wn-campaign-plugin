@@ -1,0 +1,6 @@
+tabs:
+  fields:
+    daily_limit:
+      label: Daily Limit
+      type: number
+      default: 100

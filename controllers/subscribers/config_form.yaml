@@ -1,0 +1,14 @@
+# controllers/subscribers/config_form.yaml
+name: Subscribers
+modelClass: Pbs\Campaign\Models\Subscriber
+form: $/pbs/campaign/models/subscriber/fields.yaml
+defaultRedirect: pbs/campaign/subscribers
+create:
+    title: Create Subscriber
+    redirect: pbs/campaign/subscribers/update/:id
+    redirectClose: pbs/campaign/subscribers
+
+update:
+    title: Edit Subscriber
+    redirect: pbs/campaign/subscribers/update/:id
+    redirectClose: pbs/campaign/subscribers

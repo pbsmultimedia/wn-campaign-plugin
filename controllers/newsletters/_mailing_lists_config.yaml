@@ -1,0 +1,8 @@
+# List configuration file for the popup list widget
+columns: $/pbs/campaign/models/mailinglist/columns.yaml
+model: Pbs\Campaign\Models\MailingList
+noRecordsMessage: No mailing lists found
+recordsPerPage: 20
+showSearch: true
+showCheckboxes: true
+showSorting: true

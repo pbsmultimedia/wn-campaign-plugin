@@ -1,0 +1,9 @@
+scopes:
+  campaign:
+      modelClass: Pbs\Campaign\Models\Campaign
+      label: Campaign
+      type: group
+      # conditions: id in (:filtered)
+      nameFrom: idAndName
+      # select: test
+      scope: filterCampaigns

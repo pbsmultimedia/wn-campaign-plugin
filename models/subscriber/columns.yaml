@@ -1,0 +1,16 @@
+columns:
+    name:
+        label: Name
+        searchable: true
+        sortable: true
+    email:
+        label: Email
+        searchable: true
+        sortable: true
+    status:
+        label: Status
+        sortable: true
+    is_subscribed:
+        label: Subscribed
+        type: switch
+        # sortable: true

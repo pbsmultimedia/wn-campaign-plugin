@@ -1,0 +1,19 @@
+<div class="scoreboard" id="clicksCounter">
+    <?= $this->makePartial('clicks_counter', [
+        'counts' => $clicks,
+        'filtered' => $filteredClicks
+    ]) ?>
+</div>
+<?= $this->listRender() ?>
+<script>
+$(function() {
+    // When filters or search change, refresh the counts
+    $(document).on('ajaxUpdate', function(event, context) {
+        if (context && (context.handler === 'listFilter::onFilterUpdate')) {
+            // $.request('onRefreshRecordCounts');
+            $.request('onGetFilteredRecords');
+        }
+       console.log(context);
+    });
+});
+</script>

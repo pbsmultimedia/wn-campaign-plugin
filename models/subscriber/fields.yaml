@@ -1,0 +1,45 @@
+fields:
+  name:
+    label: Name
+    type: text
+    span: left
+  email:
+    label: Email
+    type: text
+    span: left
+    required: true
+  is_subscribed:
+    label: Subscribed
+    type: switch
+    default: 1
+    span: left
+    trigger:
+      action: disable
+      field: unsubscribed_by
+      condition: value[user]
+  unsubscribed_by:
+    label: Unsubscribed by
+    type: text
+    span: left
+    readOnly: true
+    #trigger:
+    #  action: hide
+    #  field: subscribed
+    # on type switch condition is checked..
+    #  condition: checked
+  unsubscribed_at:
+    label: Unsubscribed at
+    type: text
+    span: left
+    readOnly: true
+    #trigger:
+    #  action: hide
+    #  field: subscribed
+    #  condition: checked
+  lists:
+    label: Lists
+    type: relation
+    nameFrom: name
+  clicks:
+    label: Clicks
+    type: partial

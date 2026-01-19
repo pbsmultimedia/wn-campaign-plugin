@@ -1,0 +1,16 @@
+fields:
+  template:
+    label: Template
+    type: dropdown
+    # options: getTemplatesOptions
+    span: left
+    default: default
+    required: true
+    comment: <a href="/backend/system/mailtemplates">mail templates</a> that include "newsletter" on the description will be listed here.
+    commentHtml: true
+  title:
+    label: Title (internal use)
+    type: text
+    default: Newsletter
+    required: true
+    span: right

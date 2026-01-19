@@ -1,0 +1,10 @@
+columns:
+    name:
+        label: Name
+        searchable: true
+        sortable: true
+
+    subscribers_count:
+        label: Subscribers
+        relation: subscribers
+        type: number

@@ -1,0 +1,81 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+  name:
+    label: Name (internal use)
+    span: left
+    default: Test Campaign
+  subject:
+    label: Email subject
+    span: right
+    default: Test Subject
+  description:
+    label: Description
+    type: textarea
+    size: small
+    default: Test Description
+  status:
+    label: Status
+    type: text
+    span: left
+    default: draft
+    readOnly: true
+    # comment: The status of the campaign. Draft means it is not sent yet.
+  # nice to have..!
+  # scheduled_at:
+  #     label: Schedule For
+  #     type: datepicker
+  #     mode: datetime
+  #     span: right
+  #     trigger:
+  #         action: show
+  #         field: status
+  #         condition: value[scheduled]
+
+tabs:
+  fields:
+    newsletter:
+      tab: Newsletter Template
+      type: recordfinder
+      list: $/pbs/campaign/models/newsletter/columns.yaml
+      recordsPerPage: 10
+      title: Find Newsletter Template
+      prompt: Click the Find button to find a newsletter template
+      nameFrom: title
+      descriptionFrom: description
+      required: true
+    lists:
+      tab: Mailing lists
+      # type: relation
+      type: partial
+      # way better, but NOK?
+      # no value is posted? a workaround was needed
+      required: true
+    recipients:
+      tab: Progress
+      type: partial
+      context: update
+      # trigger:
+      #   action: hide
+      #   field: status
+      #   condition: value[draft]
+    links:
+      tab: Metrics
+      type: partial
+      context: update
+      # this causes a little flicker..
+      # doing this server side may be a better option - looks OK!
+      # trigger:
+      #   action: show
+      #   field: status
+      #   condition: value[sent]
+    visualizations:
+      tab: Visualizations
+      type: partial      
+      context: update
+    leads:
+      tab: Leads
+      type: partial
+      context: update

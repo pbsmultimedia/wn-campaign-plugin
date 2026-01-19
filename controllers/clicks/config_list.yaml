@@ -1,0 +1,35 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+title: Campaign Clicks
+modelClass: Pbs\Campaign\Models\Click
+noRecordsMessage: backend::lang.list.no_records
+showPageNumbers: true
+recordsPerPage: 20
+showCheckboxes: false
+showSorting: true
+defaultSort:
+    column: created_at
+    direction: desc
+
+# toolbar:
+    # buttons: list_toolbar
+    #search:
+    #    prompt: backend::lang.list.search_prompt
+
+# List columns "inline"
+list:
+    columns:
+        id:
+            label: ID
+        link[campaign][name]:
+            label: Name
+        link[original_url]:
+            label: Link
+        subscriber[name]:
+            label: Subscriber
+        created_at:
+            label: Date
+
+filter: config_filter.yaml

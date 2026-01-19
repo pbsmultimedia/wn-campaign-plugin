@@ -1,0 +1,196 @@
+# this will be the base of the newsletter components (?) (what?)
+# nice to have: 
+# - create fields on the backend settings
+# - have a list of links that can be used in the newsletter (CMS pages, etc..)
+fields:
+  template:
+    label: Template
+    type: dropdown
+    span: left
+    default: default
+    required: true
+  title:
+    label: Title (internal use)
+    type: text
+    default: Newsletter
+    required: true
+    context: update
+    span: right
+  status:
+    label: Status
+    type: text
+    default: draft
+    readOnly: true
+    span: left
+    context: update
+  is_public:
+    label: Show on archive / public access?
+    type: checkbox
+    default: false
+    span: right
+    context: update
+  content:
+    label: Blocks
+    type: repeater
+    prompt: Add a block
+    context: update
+    groups:
+      heading:
+        name: Heading
+        description: A heading
+        icon: icon-header
+        fields:
+          header:
+            label: Heading
+            type: section
+          text:
+            label: Text
+            type: text
+            span: left
+          level:
+            label: Level
+            type: dropdown
+            span: right
+            options:
+              h1: H1
+              h2: H2
+              h3: H3
+              h4: H4
+              h5: H5
+              h6: H6
+      text:
+        name: Text
+        description: Rich text
+        icon: icon-file-text
+        fields:
+          header:
+            label: Rich text
+            type: section
+          text:
+            label: Text
+            type: richeditor
+            toolbarButtons:
+              [
+                "bold",
+                "italic",
+                "insertLink",
+                "insertHR",
+                "emoji",
+                "insertName",
+                "formatOL",
+                "formatUL",
+                "undo",
+                "redo",
+                "html",
+              ]
+      link:
+        name: Link button
+        description: A link
+        icon: icon-link
+        fields:       
+          # maybe just have a "open" link field for now? sounds good for v1.0
+          # later work on internal and external links
+          header:
+            label: Link button
+            type: section
+          link:
+            label: Link
+            type: text
+            # guess that type: url only works in v1.2.9?
+            span: left
+            required: true
+            placeholder: https://example.com
+          # link_type:
+          #   label: Link type
+          #   type: balloon-selector
+          #   options: 
+          #     cms: CMS Page
+          #     external: External page
+          #   default: cms
+          #   span: left  
+          # link_page:
+          #   label: Internal page
+          #   type: dropdown
+          #   options: getPagesOptions
+          #   span: right
+          #   trigger:
+          #     action: show
+          #     field: link_type
+          #     condition: value[cms]
+          # link_url:
+          #   label: External URL
+          #   type: text
+          #  span: right
+          #  placeholder: https://example.com
+          #  trigger:
+          #    action: show
+          #    field: link_type
+          #    condition: value[external]
+          link_label:
+            label: Link label
+            type: text
+            span: right
+            default: Read more ➜
+            required: true
+      hr:
+          name: Horizontal rule
+          description: A horizontal rule
+          icon: icon-minus
+          fields:
+            header:
+              label: Horizontal rule
+              type: section              
+      image:
+        name: Image
+        description: An image with caption
+        icon: icon-image
+        fields:
+          header:
+            label: Image
+            type: section
+          image:
+            label: Image
+            type: mediafinder
+            span: left
+          caption:
+            label: Caption
+            type: text
+            span: right
+      feature_card:
+        name: Feature card
+        description: An image with text and a link
+        icon: icon-image
+        fields:
+          header:
+            label: Feature card
+            type: section
+          image:
+            label: Image
+            type: mediafinder
+            span: left
+          title:
+            label: Title
+            type: text
+            span: right
+          content:
+            label: Content
+            type: textarea
+            span: left
+          link:
+            label: Link
+            type: text
+            span: right
+            required: true
+          link_label:
+            label: Link label
+            type: text
+            span: right
+            default: Read more ➜            
+          alignment:
+            label: Image alignment
+            type: dropdown
+            options:
+              left: Left
+              right: Right
+            default: left
+            span: left

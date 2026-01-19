@@ -1,0 +1,25 @@
+# controllers/lists/config_list.yaml
+title: Lists
+modelClass: Pbs\Campaign\Models\MailingList
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'pbs/campaign/lists/update/:id'
+
+list:
+    columns:
+        name:
+            label: Name
+            searchable: true
+            sortable: true
+        subscribers_count:
+            label: Subscribers
+            relation: subscribers
+            useRelationCount: true
+            sortable: false
+        created_at:
+            label: Created
+            type: datetime
+            invisible: true

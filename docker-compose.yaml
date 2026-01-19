@@ -1,0 +1,71 @@
+services:
+  web:
+    #image: ghcr.io/mpo-web-consulting/wintercms:latest
+    # chatGPT tip
+    build:
+      context: . # Points to the directory where the Dockerfile is located
+      dockerfile: Dockerfile # Points to your custom Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      #- ./composer.json:/var/www/html/composer.json
+      #- ./composer.lock:/var/www/html/composer.lock
+      #- ./vendor:/var/www/html/vendor
+      #- ./plugins:/var/www/html/plugins
+      # only after the dependencies are installed - fixed!
+      #- ./plugins:/var/www/html/plugins
+      - .:/var/www/html/plugins/pbs/campaign
+      #- ./themes/ajita:/var/www/html/themes/ajita
+      #- ./themes/newshub-theme:/var/www/html/themes/newshub-theme
+      #- ./themes/bootstrap-5-mall-theme:/var/www/html/themes/bootstrap-5-mall-theme
+      # maybe useful to work offiline?
+      #- ./vendor:/var/www/html/vendor
+    environment:
+      #- DB_TYPE=mysql
+      #- DB_HOST=mariadb #DB_HOST should match the service name of the database container
+      #- DB_HOST=mysql
+      #- DB_DATABASE=ajita
+      #- DB_USERNAME=root
+      #- DB_PASSWORD=root
+      - APP_DEBUG=true # show all errors - it seems that offline mall shows a 404..?
+      #- APP_ENV=local
+      #- DB_TYPE=sqlite            
+      - APP_URL=http://localhost:8080
+      #- CMS_LINK_POLICY=force
+      - INIT_WINTER=true
+      - CMS_ADMIN_PASSWORD=admin
+      # update composer dependencies on container startup
+      #- COMPOSER_UPDATE=true
+      - QUEUE_DRIVER=database
+      - MAIL_HOST=mailpit
+      - MAIL_PORT=1025
+      - MAIL_USERNAME=null
+      - MAIL_PASSWORD=null
+      - MAIL_ENCRYPTION=null
+    depends_on:
+      - mariadb
+      - mailpit
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    #volumes:
+    # files mounted into /docker-entrypoint-initdb.d are runned on container startup!
+    # way better - 10mb instead of 200mb!
+    #- ./db.sql:/docker-entrypoint-initdb.d/db.sql
+    #- ./db:/var/lib/mysql
+    #- ./ajita.sql:/docker-entrypoint-initdb.d/db.sql
+    #environment:
+    # some config is NOK - given by chatGPT..
+    #- MYSQL_ROOT_PASSWORD=root
+    #- MYSQL_DATABASE=ajita
+    #- MYSQL_USER=root
+    #- MYSQL_PASSWORD=root
+    #- MYSQL_ROOT_PASSWORD=root
+    #- MYSQL_DATABASE=ajita
+  mailpit:
+    image: axllent/mailpit
+    ports:
+      - 1025:1025
+      - 8025:8025
+

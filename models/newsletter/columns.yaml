@@ -1,0 +1,21 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+  id:
+    label: ID
+    sortable: true
+  title:
+    label: Title
+    searchable: true
+  preview:
+    label: Preview
+    type: partial
+    path: $/pbs/campaign/controllers/newsletters/_preview_column.htm
+    sortable: false
+    clickable: false
+  created_at:
+    label: Created
+    type: datetime
+    sortable: true
