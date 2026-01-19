@@ -52,7 +52,11 @@ class NewsletterPreviewService
         // Capture HTML email output
         $html = '';
         Event::listen('mailer.prepareSend', function ($mailerInstance, $view, $message) use (&$html) {
-            $html = $message->getHtmlBody();
+            try {
+                $html = (string) $message->getHtmlBody();
+            } catch (\Throwable $e) {
+                $html = (string) $message->getBody();
+            }
             return false; // stop actual send
         });
 
@@ -94,7 +98,11 @@ class NewsletterPreviewService
         // Capture HTML email output
         $html = '';
         Event::listen('mailer.prepareSend', function ($mailerInstance, $view, $message) use (&$html) {
-            $html = $message->getHtmlBody();
+            try {
+                $html = (string) $message->getHtmlBody();
+            } catch (\Throwable $e) {
+                $html = (string) $message->getBody();
+            }
             return false; // stop actual send
         });        
 
