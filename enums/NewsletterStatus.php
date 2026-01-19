@@ -1,9 +1,15 @@
 <?php namespace Pbs\Campaign\Enums;
 
-enum NewsletterStatus: string
+class NewsletterStatus
 {
-    use EnumValuesTrait;
+    const Draft = 'draft';
+    const Finished = 'finished';
 
-    case Draft = 'draft';
-    case Finished = 'finished';
+    public static function values(): array
+    {
+        return [
+            self::Draft,
+            self::Finished,
+        ];
+    }
 }

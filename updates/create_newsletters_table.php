@@ -15,7 +15,7 @@ class CreateNewslettersTable extends Migration
                 $table->string('title');
                 $table->string('template');
                 $table->text('content')->nullable();
-                $table->enum('status', NewsletterStatus::values())->default(NewsletterStatus::Draft->value);
+                $table->enum('status', NewsletterStatus::values())->default(NewsletterStatus::Draft);
                 $table->boolean('is_public')->default(false);
                 $table->timestamps();
             });

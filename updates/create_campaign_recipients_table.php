@@ -21,7 +21,7 @@ class CreateCampaignRecipientsTable extends Migration
             // Improve performance for lookups
             $table->index('campaign_id');
             $table->index('subscriber_id');
-            $table->enum('status', CampaignRecipientStatus::values())->default(CampaignRecipientStatus::Pending->value);
+            $table->enum('status', CampaignRecipientStatus::values())->default(CampaignRecipientStatus::Pending);
             // nice to have: if failed, store the error message? or just log it? guess that is logged by default?
             $table->timestamps();
         });

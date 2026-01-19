@@ -1,11 +1,19 @@
 <?php namespace Pbs\Campaign\Enums;
 
-enum CampaignRecipientStatus: string
+class CampaignRecipientStatus
 {
-    use EnumValuesTrait;
+    const Pending = 'pending';
+    const Sending = 'sending';
+    const Sent = 'sent';
+    const Failed = 'failed';
 
-    case Pending = 'pending';
-    case Sending = 'sending';
-    case Sent = 'sent';
-    case Failed = 'failed';
+    public static function values(): array
+    {
+        return [
+            self::Pending,
+            self::Sending,
+            self::Sent,
+            self::Failed,
+        ];
+    }
 }

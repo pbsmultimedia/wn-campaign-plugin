@@ -18,7 +18,7 @@ class CreateCampaignsTable extends Migration
             $table->text('description')->nullable();
             $table->timestamp('scheduled_at')->nullable();
             $table->timestamp('sent_at')->nullable();
-            $table->enum('status', CampaignStatus::values())->default(CampaignStatus::Draft->value);
+            $table->enum('status', CampaignStatus::values())->default(CampaignStatus::Draft);
             $table->timestamps();
         });
 
