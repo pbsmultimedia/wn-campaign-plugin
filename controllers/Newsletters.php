@@ -34,9 +34,9 @@ class Newsletters extends Controller
 
     public function update($id = null)
     {
-        $this->addJs('$/pbs/campaign/assets/js/insertname.js');
-        // $this->addJs('$/pbs/campaign/assets/js/emoji.js');
-        $this->addJs('$/pbs/campaign/assets/js/tracker.js');
+        $this->addJs('/plugins/pbs/campaign/assets/js/insertname.js');
+        // $this->addJs('/plugins/pbs/campaign/assets/js/emoji.js');
+        $this->addJs('/plugins/pbs/campaign/assets/js/tracker.js');
         return $this->asExtension('FormController')->update($id);
     }
 
