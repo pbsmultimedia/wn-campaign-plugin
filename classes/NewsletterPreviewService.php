@@ -33,6 +33,8 @@ class NewsletterPreviewService
 
         // fancy stuff: show admin name in preview instead of placeholder
         // guess this is used else where..? - SendCampaignEmail - DRY..!
+        // blows up on wintercm 1.1.9 and PHP 8.0.16
+        /*
         if (is_array($content)) {
             foreach ($content as $key => $item) {
                 if (!empty($item['text']) && is_string($item['text'])) {
@@ -46,7 +48,21 @@ class NewsletterPreviewService
                 }
             }
         }
-        
+        */        
+
+        if (is_array($content)) {
+            foreach ($content as $key => $item) {
+                if (!empty($item['text']) && is_string($item['text'])) {
+                    // Simple string replacement, not Twig parsing
+                    $content[$key]['text'] = str_replace(
+                        '{{name}}',
+                        BackendAuth::getUser()->first_name,
+                        $item['text']
+                    );
+                }
+            }
+        }
+
         $newsletter->content = $content;
         
         // Capture HTML email output

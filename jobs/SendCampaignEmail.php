@@ -100,6 +100,8 @@ class SendCampaignEmail implements ShouldQueue
         $content = $this->newsletter->content ?? [];
 
         // add recipient name
+        // blows up on wintercms 1.1.9 and PHP 8.0.16
+        /*
         if (is_array($content)) {
             foreach ($content as $key => $item) {
                 if (!empty($item['text']) && is_string($item['text'])) {
@@ -113,7 +115,21 @@ class SendCampaignEmail implements ShouldQueue
                 }
             }
         }
-        
+        */
+
+        if (is_array($content)) {
+            foreach ($content as $key => $item) {
+                if (!empty($item['text']) && is_string($item['text'])) {
+                    // Simple string replacement, not Twig parsing
+                    $content[$key]['text'] = str_replace(
+                        '{{name}}',
+                        $this->recipient->name,
+                        $item['text']
+                    );
+                }
+            }
+        }
+
         $this->newsletter->content = $content;
 
         $this->newsletter->beacon = url("/campaign/open/{$this->campaign->id}/{$this->recipient->hash}");
