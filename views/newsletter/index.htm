@@ -70,7 +70,25 @@ if so, a template shouldn't be deletable.. otherwise, it will break older newsle
     {% endif %}
     {# think this partial is coming from the default instalation? #}
     {% if item._group == 'link' %}
-        {% partial 'button' body=item.link_label url=(item.link | parse(_context)) %}
+        <table class="action" align="center" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="center">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td>
+                                            <a href="{{ item.link | parse(_context) }}" class="button button-primary" target="_blank">{{ item.link_label }}</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     {% endif %}
     {% if item._group == 'image' %}
         <div class="item">    
