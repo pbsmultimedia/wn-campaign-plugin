@@ -39,7 +39,7 @@ class Links extends Controller
         );
 
         // Redirect with the cookie attached
-        return redirect("{$link->original_url}?utm_source=campaign&utm_medium=email&utm_campaign={$link->campaign_id}")
+        return redirect($link->original_url)
             ->withCookie($cookie);
     }
 }
