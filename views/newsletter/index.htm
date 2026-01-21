@@ -57,8 +57,8 @@ if so, a template shouldn't be deletable.. otherwise, it will break older newsle
     </table>
 {% endmacro %}
 
-{# did tried partials, but it got complicated at several levels.. #}
-{# it seems they work, but have to be registered #}
+<span style="display:none;">{{ newsletter.preview }}</span>
+
 {% for item in newsletter.content %}
     {% if item._group == 'heading' %}
         <{{ item.level }}>{{ item.text }}</{{ item.level }}>
@@ -68,7 +68,6 @@ if so, a template shouldn't be deletable.. otherwise, it will break older newsle
             {{ item.text | parse(_context) | raw }}
         </div>
     {% endif %}
-    {# think this partial is coming from the default instalation? #}
     {% if item._group == 'link' %}
         <table class="action" align="center" width="100%" cellpadding="0" cellspacing="0">
             <tr>

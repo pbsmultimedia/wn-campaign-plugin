@@ -64,6 +64,14 @@ class NewsletterPreviewService
         }
 
         $newsletter->content = $content;
+
+        // testing preview text
+        $newsletter->preview = collect($content)
+            ->first(function($item) {
+                return !empty($item['text']) && is_string($item['text']);
+            })['text'] ?? null;
+
+        $newsletter->preview = strip_tags($newsletter->preview);
         
         // Capture HTML email output
         $html = '';

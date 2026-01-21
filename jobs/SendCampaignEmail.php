@@ -136,6 +136,14 @@ class SendCampaignEmail implements ShouldQueue
 
         $this->newsletter->unsubscribe = url("/campaign/unsubscribe/{$this->recipient->hash}");
 
+        // preview text
+        $this->newsletter->preview = collect($content)
+            ->first(function($item) {
+                return !empty($item['text']) && is_string($item['text']);
+            })['text'] ?? null;
+            
+        $this->newsletter->preview = strip_tags($this->newsletter->preview);        
+
         Log::info("newsletter content at send campaign email");
         Log::info($this->newsletter->content);
 
