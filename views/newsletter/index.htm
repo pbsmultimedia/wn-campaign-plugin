@@ -57,8 +57,6 @@ if so, a template shouldn't be deletable.. otherwise, it will break older newsle
     </table>
 {% endmacro %}
 
-<span style="display:none;">{{ newsletter.preview }}</span>
-
 {% for item in newsletter.content %}
     {% if item._group == 'heading' %}
         <{{ item.level }}>{{ item.text }}</{{ item.level }}>

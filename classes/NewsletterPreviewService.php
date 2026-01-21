@@ -65,14 +65,36 @@ class NewsletterPreviewService
 
         $newsletter->content = $content;
 
-        // testing preview text
+        // testing preview text        
+        /*
         $newsletter->preview = collect($content)
             ->first(function($item) {
                 return !empty($item['text']) && is_string($item['text']);
             })['text'] ?? null;
+        */
 
+        $previewText = \Illuminate\Support\Str::limit(
+            collect($content)
+                ->pluck('text')
+                ->filter(function($text) {
+                    return !empty($text) && is_string($text);
+                })
+                ->map(function($text) {
+                    return html_entity_decode(strip_tags($text)); // Decode entities
+                })
+                ->implode(' '),
+            150,
+            '...'
+        );
+
+        $newsletter->preview = $previewText;
+                
+        // Clean: strip tags, remove newlines, truncate
         $newsletter->preview = strip_tags($newsletter->preview);
-        
+        $newsletter->preview = str_replace(["\r", "\n"], ' ', $newsletter->preview);
+        // Also apply the limit here for consistency, though visual preview might tolerate more
+        $newsletter->preview = \Str::limit($newsletter->preview, 150);        
+
         // Capture HTML email output
         $html = '';
         Event::listen('mailer.prepareSend', function ($mailerInstance, $view, $message) use (&$html) {

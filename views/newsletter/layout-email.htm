@@ -23,6 +23,7 @@ name = "Newsletter layout"
 </head>
 
 <body>
+  <p style="display:none; line-height: 0; font-size: 0">{{ previewText }}</p>
   <table class="wrapper layout-default" width="100%" cellpadding="0" cellspacing="0">
     <!-- Header -->
     {% partial 'header' body %} {{ subject|raw }} - PBS {% endpartial %}

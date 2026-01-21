@@ -137,12 +137,25 @@ class SendCampaignEmail implements ShouldQueue
         $this->newsletter->unsubscribe = url("/campaign/unsubscribe/{$this->recipient->hash}");
 
         // preview text
-        $this->newsletter->preview = collect($content)
-            ->first(function($item) {
-                return !empty($item['text']) && is_string($item['text']);
-            })['text'] ?? null;
-            
-        $this->newsletter->preview = strip_tags($this->newsletter->preview);        
+        $previewText = \Illuminate\Support\Str::limit(
+            collect($content)
+                ->pluck('text')
+                ->filter(function($text) {
+                    return !empty($text) && is_string($text);
+                })
+                ->map(function($text) {
+                    return html_entity_decode(strip_tags($text)); // Decode entities
+                })
+                ->implode(' '),
+            150,
+            '...'
+        );
+
+        // Clean: strip tags, remove newlines, truncate    
+        $previewText = strip_tags($previewText);
+        $previewText = str_replace(["\r", "\n"], ' ', $previewText);
+        // Also apply the limit here for consistency, though visual preview might tolerate more
+        $previewText = \Str::limit($previewText, 150);
 
         Log::info("newsletter content at send campaign email");
         Log::info($this->newsletter->content);
@@ -162,6 +175,7 @@ class SendCampaignEmail implements ShouldQueue
                 'newsletter' => $this->newsletter,
                 'recipient_hash' => $this->recipient->hash,
                 'unsubscribeUrl' => $unsubscribeUrl,
+                'previewText' => $previewText,
             ], function($message) use ($unsubscribeUrl) {
                 $message->to($this->recipient->email);
                 $message->subject($this->campaign->subject);
