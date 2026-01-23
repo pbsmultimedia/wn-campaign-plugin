@@ -62,7 +62,7 @@ tabs:
       #   field: status
       #   condition: value[draft]
     links:
-      tab: Metrics
+      tab: Clicks
       type: partial
       context: update
       # this causes a little flicker..

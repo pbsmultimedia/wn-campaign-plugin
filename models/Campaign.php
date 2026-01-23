@@ -104,14 +104,46 @@ class Campaign extends Model
         return $this->leads()->count();
     }
 
-    public function beforeDelete()
+    public function getRecipientsCountAttribute()
     {
-        # delete all recipients
-        $this->recipients()->delete();
+        return $this->recipients()->count();
     }
 
     public function getIdAndNameAttribute()
     {
         return $this->id . '- ' . $this->name;
     }
+
+    public function getClickThroughRateAttribute()
+    {
+        if ($this->recipients_count == 0) {
+            return 0 . '%';
+        }
+
+        return round(($this->clicks_count / $this->recipients_count) * 100, 2) . '%';
+    }
+
+    public function getVisualizationsRateAttribute()
+    {
+        if ($this->recipients_count == 0) {
+            return 0;
+        }
+
+        return round(($this->visualizations_count / $this->recipients_count) * 100, 2) . '%';
+    }
+
+    public function getLeadsRateAttribute()
+    {
+        if ($this->recipients_count == 0) {
+            return 0;
+        }
+
+        return round(($this->leads_count / $this->recipients_count) * 100, 2) . '%';
+    }
+
+    public function beforeDelete()
+    {
+        # delete all recipients
+        $this->recipients()->delete();
+    }    
 }

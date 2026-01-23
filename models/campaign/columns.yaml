@@ -15,8 +15,11 @@ columns:
         label: Status
         type: partial
         path: $/pbs/campaign/controllers/campaigns/_status_column.htm
-    clicks_count:
-        label: Clicks
+    created_at:
+        label: Created at
+        type: datetime
+    recipients_count:
+        label: Recipients
         type: number
         searchable: false
         sortable: true
@@ -25,12 +28,29 @@ columns:
         type: number
         searchable: false
         sortable: true
+    visualizations_rate:
+        label: Visualizations rate
+        type: number
+        searchable: false
+        sortable: true
+    clicks_count:
+        label: Clicks
+        type: number
+        searchable: false
+        sortable: true
+    click_through_rate:
+        label: Clicks rate
+        type: number
+        searchable: false
+        sortable: true
     leads_count:
         label: Leads
         type: number
         searchable: false
         sortable: true
-    created_at:
-        label: Created
-        type: datetime
-        invisible: true
+    leads_rate:
+        label: Leads rate
+        type: number
+        searchable: false
+        sortable: true
+    
