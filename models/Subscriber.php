@@ -49,6 +49,7 @@ class Subscriber extends Model
 
     public $hasMany = [
         'clicks' => [Click::class, 'key' => 'subscriber_id'],
+        'visualizations' => [Visualization::class, 'key' => 'subscriber_id'],
     ];
 
     public function beforeCreate()

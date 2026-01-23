@@ -62,6 +62,7 @@ class Recipient extends Model
         'clicks' => Click::class
     ];
 
+    /*
     public function getNameAttribute()
     {
         return $this->subscriber->name;
@@ -69,9 +70,10 @@ class Recipient extends Model
 
     public function getEmailAttribute()
     {
-        return $this->subscriber->email;        
+        return $this->subscriber->email;
     }    
-
+    */
+    
     public function getHashAttribute()
     {
         return $this->subscriber->hash;

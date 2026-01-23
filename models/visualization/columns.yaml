@@ -5,7 +5,7 @@ columns:
     campaign[subject]:
         label: Campaign
         searchable: true
-    subscriber[email]:
+    email:
         label: Subscriber
         searchable: true
     user_agent:

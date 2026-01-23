@@ -29,4 +29,9 @@ class Visualization extends Model
         }
         return $query;
     }
+
+    public function getEmailAttribute()
+    {
+        return $this->subscriber?->email ?? 'Deleted';
+    }
 }
