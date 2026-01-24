@@ -15,7 +15,16 @@ After the lead is registered, the cookie is deleted.
 To trigger the event, use the following code:
 
 ```php
-Event::fire('pbs.campaign.lead');
+Event::fire('pbs.campaign.lead', ['lead_id' => 1, 'lead_type' => 'your lead type']);
 ```
 
 Cookie wiil be read on the handler.
+
+To test on a CMS page, use the following snippet in the code section
+
+```php
+function onStart()
+{
+    Event::fire('pbs.campaign.lead', ['lead_id' => 1, 'lead_type' => 'your lead type']);
+}
+```

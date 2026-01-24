@@ -16,7 +16,7 @@ class EventHandlers
         $events->listen('pbs.campaign.lead', [$this, 'onCampaignLead']);
     }
 
-    public function onCampaignLead()
+    public function onCampaignLead($leadId, $leadType)
     {
         $data = json_decode(Cookie::get('campaign'), true);
 
@@ -28,8 +28,8 @@ class EventHandlers
         // + merges two arrays, $data from cookie and the meta data
         Lead::create($data + [
             'meta' => json_encode([
-                'lead_id' => 1,
-                'lead_type' => 'reservation',
+                'lead_id' => $leadId,
+                'lead_type' => $leadType,
                 'user_agent' => request()->userAgent(),                
             ]),
         ]);
