@@ -1,0 +1,22 @@
+{
+    "name": "pbs/wn-campaign-plugin",
+    "description": "Newsletter Campaign Plugin",
+    "type": "winter-plugin",
+    "homepage": "https://github.com/pbsmultimedia/wn-campaign-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pedro Batista da Silva",
+            "email": "pbs.multimedia@gmail.com",
+            "role": "Original Author"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/pbsmultimedia/wn-campaign-plugin/issues",
+        "source": "https://github.com/pbsmultimedia/wn-campaign-plugin"
+    }, 
+    "require": {
+        "php": ">=8.0.16",
+        "composer/installers": "~1.0"
+    }
+}
