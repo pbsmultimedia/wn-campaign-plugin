@@ -1,0 +1,10 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+export:
+    title: Export Visualizations
+    modelClass: Pbs\Campaign\Models\VisualizationExport
+    list: $/pbs/campaign/models/visualization/export_columns.yaml
+    fileName: campaign-visualizations.csv
+    redirect: pbs/campaign/visualizations

@@ -1,0 +1,11 @@
+columns:
+    campaign_id:
+        label: Campaign ID
+    campaign_subject:
+        label: Campaign Subject
+    subscriber_email:
+        label: Subscriber Email
+    user_agent:
+        label: User Agent
+    created_at:
+        label: Opened At

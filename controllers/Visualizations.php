@@ -8,9 +8,11 @@ class Visualizations extends Controller
 {
     public $implement = [
         \Backend\Behaviors\ListController::class,
+        \Backend\Behaviors\ImportExportController::class,
     ];
 
     public $listConfig = 'config_list.yaml';
+    public $importExportConfig = 'config_import_export.yaml';
 
     public function __construct()
     {
@@ -44,5 +46,11 @@ class Visualizations extends Controller
                 'filteredVisualizations' => $records->count()
             ]),
         ];
+    }
+
+    public function export()
+    {
+        $this->pageTitle = 'Export Visualizations';
+        return $this->asExtension('ImportExportController')->export();
     }
 }

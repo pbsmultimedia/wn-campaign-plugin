@@ -1,6 +1,6 @@
 columns:
-    id:
-        label: ID
+    campaign_id:
+        label: Campaign ID
         searchable: true
     campaign[subject]:
         label: Campaign
