@@ -117,11 +117,4 @@ class Clicks extends Controller
         $this->pageTitle = 'Export Clicks';
         return $this->asExtension('ImportExportController')->export();
     }
-
-    public function exportExtendConfig($config, $type)
-    {
-        if ($type == 'export') {
-            $config->fileName = 'clicks-' . date('Y-m-d') . '.csv';
-        }
-    }
 }
