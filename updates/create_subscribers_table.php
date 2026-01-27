@@ -13,16 +13,11 @@ class CreateSubscribersTable extends Migration
                 $table->increments('id');
                 $table->string('name')->nullable();
                 $table->string('email')->unique();
-                $table->string('hash')->unique();
-                // guess this is not needed?
-                // or use for bounced
-                $table->string('status')->default('active');
-                // is_subscribed maybe?
+                $table->string('hash')->unique();                
+                $table->string('status')->default('active');                
                 $table->boolean('is_subscribed')->default(true);
                 $table->timestamp('unsubscribed_at')->nullable();
-                // TODO: enum
-                $table->enum('unsubscribed_by', ['user', 'system'])->nullable();
-                // nice to have: unsubscribe_campaign_id and unsubscribe_reason
+                $table->enum('unsubscribed_by', ['user', 'system'])->nullable();                
                 $table->timestamps();
             });
         }

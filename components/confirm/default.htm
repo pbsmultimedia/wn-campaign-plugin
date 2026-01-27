@@ -1,0 +1,17 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            {% if success %}
+                <div class="confirmation-message">
+                    <h3>Subscription confirmed!</h3>
+                    <p>Thank you, {{ subscriber.first_name ?: subscriber.email }}. Your subscription has been confirmed.</p>
+                </div>
+            {% else %}
+                <div class="error-message">
+                    <h3>Invalid confirmation link</h3>
+                    <p>This confirmation link is invalid or has already been used.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

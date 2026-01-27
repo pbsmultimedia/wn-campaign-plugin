@@ -26,7 +26,7 @@ class Subscribers extends Controller
     public function import()
     {
         $this->pageTitle = 'Import Subscribers';
-        $this->addJs('/plugins/pbs/campaign/assets/js/importer.js');
+        // $this->addJs('/plugins/pbs/campaign/assets/js/importer.js');
         return $this->asExtension('ImportExportController')->import();
     }
 

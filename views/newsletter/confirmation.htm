@@ -1,0 +1,34 @@
+subject = "Confirm your subscription"
+layout = "newsletter"
+==
+Please confirm your subscription by clicking the link below:
+
+{{ confirm_link }}
+
+If you did not request this, you can safely ignore this email.
+==
+<p>Please confirm your subscription by clicking the button below:</p>
+
+<table class="action" align="center" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <a href="{{ confirm_link }}" class="button button-primary" target="_blank">
+                                        Confirm Subscription
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<p>If you did not request this, you can safely ignore this email.</p>

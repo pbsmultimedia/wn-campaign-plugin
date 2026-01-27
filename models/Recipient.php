@@ -62,17 +62,20 @@ class Recipient extends Model
         'clicks' => Click::class
     ];
 
-    /*
     public function getNameAttribute()
     {
         return $this->subscriber->name;
     }
 
+    public function getFirstNameAttribute()
+    {
+        return $this->subscriber->first_name;
+    }
+
     public function getEmailAttribute()
     {
         return $this->subscriber->email;
-    }    
-    */
+    }
     
     public function getHashAttribute()
     {

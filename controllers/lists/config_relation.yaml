@@ -17,7 +17,7 @@ subscribers:
                 status:
                     label: Status
                     sortable: true
-                subscribed:
+                is_subscribed:
                     label: Subscribed
                     type: switch
                     sortable: true

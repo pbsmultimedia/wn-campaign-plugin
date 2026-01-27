@@ -17,7 +17,15 @@ class Subscriber extends Model
         'name',
         'email',
         'status',
-        'subscribed',
+        'is_subscribed',
+        'verified_at',
+        'consent_given_at',
+        'consent_version',
+        'source',
+        'ip',
+        'locale',
+        'unsubscribe_campaign_id',
+        'unsubscribe_reason',
     ];
 
     /**
@@ -25,14 +33,14 @@ class Subscriber extends Model
      */
     public $rules = [
         'email' => 'required|email|unique:pbs_campaign_subscribers',
-        'status' => 'in:active,bounced',
+        'status' => 'in:active,bounced,pending',
     ];
 
     /**
      * @var array Attributes to cast to native types
      */
     protected $casts = [
-        'subscribed' => 'boolean',
+        'is_subscribed' => 'boolean',
     ];
 
     /**
@@ -86,5 +94,19 @@ class Subscriber extends Model
         // }        
 
         // print_r($this->unsubscribed_at);
+    }
+
+    /**
+     * Get the first name of the subscriber.
+     * Think the name used on the newsletter body already..? But there guess it's the full name?
+     * TODO: test this on the newsletter body
+     */
+    public function getFirstNameAttribute()
+    {
+        if (!$this->name) {
+            return null;
+        }
+
+        return explode(' ', trim($this->name))[0];
     }
 }

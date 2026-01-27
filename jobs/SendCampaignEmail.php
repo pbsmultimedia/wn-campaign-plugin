@@ -123,7 +123,7 @@ class SendCampaignEmail implements ShouldQueue
                     // Simple string replacement, not Twig parsing
                     $content[$key]['text'] = str_replace(
                         '{{name}}',
-                        $this->recipient->name,
+                        $this->recipient->firstName,
                         $item['text']
                     );
                 }

@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Subscribe to newsletter</h1>
+            <div id="subscribe-placeholder">
+                <form id="subscribe-form" 
+                    method="post" 
+                    data-request="onSubscribe"
+                    oninput="this.querySelector('button[type=submit]').disabled = !this.checkValidity()">
+                    <div class="mb-3">
+                        <label for="subscribe-name" class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" id="subscribe-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subscribe-email" class="form-label">Email</label>
+                        <input type="email" 
+                            name="email" 
+                            class="form-control" 
+                            id="subscribe-email" 
+                            required
+                        >
+                    </div>
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-primary" disabled>Subscribe</button>
+                    </div>
+                    <p>I respect your <a href="{{ 'privacy-policy' | page }}">privacy</a>. Unsubscribe at any time.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

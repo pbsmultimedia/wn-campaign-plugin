@@ -56,3 +56,15 @@
 "1.0.14":
   - "Add extended fields to blog posts"
   - create_blog_extended_fields.php
+
+"1.0.15":
+  - "Add tracking and locale to subscribers table"
+  - add_tracking_and_locale_to_subscribers_table.php
+  
+"1.0.16":
+  - "Add GDPR fields to subscribers table"
+  - add_gdpr_fields_to_subscribers_table.php
+
+"1.0.17":
+  - "Create confirm page"
+  - create_confirm_page.php

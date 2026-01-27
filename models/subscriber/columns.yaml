@@ -14,3 +14,10 @@ columns:
         label: Subscribed
         type: switch
         # sortable: true
+    source:
+        label: Source
+        sortable: true
+    locale:
+        label: Locale
+        sortable: true
+        

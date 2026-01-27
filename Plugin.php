@@ -67,6 +67,13 @@ class Plugin extends PluginBase
             return $controller->run("/campaign/unsubscribe/$hash");
         });
 
+        // Throttle the confirm route
+        \Route::middleware(['web', 'throttle:5,1'])
+        ->match(['get', 'post'], '/campaign/confirm/{hash}', function($hash) {
+            $controller = new \Cms\Classes\Controller();
+            return $controller->run("/campaign/confirm/$hash");
+        });
+
         // Register event subscribers
         Event::subscribe(\Pbs\Campaign\Classes\EventHandlers::class);
 
@@ -146,6 +153,8 @@ class Plugin extends PluginBase
             // this will display the newsletter on the frontend - still in tests / WIP
             'Pbs\Campaign\Components\Newsletter' => 'newsletter',
             'Pbs\Campaign\Components\Unsubscribe' => 'unsubscribe',
+            'Pbs\Campaign\Components\Subscribe' => 'subscribe',
+            'Pbs\Campaign\Components\Confirm' => 'confirm',
         ];
     }
 
@@ -227,7 +236,8 @@ class Plugin extends PluginBase
         // it seems that for templates register is needed
         // but for layouts it's not..
         return [
-            'pbs.campaign::newsletter.index'
+            'pbs.campaign::newsletter.index',
+            'pbs.campaign::newsletter.confirmation',
         ];
     }
     
