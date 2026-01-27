@@ -31,6 +31,12 @@ tabs:
       type: relation
       nameFrom: name
       tab: Lists
+      
+    # Activity Tab
+    clicks:
+      label: Clicks
+      type: partial
+      tab: Activity
 
     # GDPR Tab
     verified_at:
@@ -88,10 +94,4 @@ tabs:
       type: text
       span: right
       readOnly: true
-      tab: Unsubscription
-
-    # Activity Tab
-    clicks:
-      label: Clicks
-      type: partial
-      tab: Activity
+      tab: Unsubscription    
