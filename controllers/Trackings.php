@@ -69,8 +69,7 @@ class Trackings extends Controller
             $subscriber = Subscriber::where('hash', $hash)->first();
             $campaign = Campaign::find($campaignId);
 
-            if (!$subscriber || !$campaign) {
-                die('Subscriber or campaign not found');
+            if (!$subscriber || !$campaign) {                
                 return;
             }
 
