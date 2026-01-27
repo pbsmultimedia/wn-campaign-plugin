@@ -1,0 +1,11 @@
+columns:
+    campaign_subject:
+        label: Campaign Subject
+    subscriber_email:
+        label: Subscriber Email
+    url:
+        label: Clicked URL
+    user_agent:
+        label: User Agent
+    created_at:
+        label: Clicked At

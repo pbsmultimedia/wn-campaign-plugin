@@ -10,10 +10,12 @@ class Clicks extends Controller
     public $implement = [
         \Backend\Behaviors\ListController::class,
         \Backend\Behaviors\FormController::class,
-    ];    
+        \Backend\Behaviors\ImportExportController::class,
+    ];
 
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
+    public $importExportConfig = 'config_import_export.yaml';
 
     public function __construct()
     {
@@ -108,5 +110,18 @@ class Clicks extends Controller
                 'filteredClicks' => $records->count()
             ]),
         ];
+    }
+
+    public function export()
+    {
+        $this->pageTitle = 'Export Clicks';
+        return $this->asExtension('ImportExportController')->export();
+    }
+
+    public function exportExtendConfig($config, $type)
+    {
+        if ($type == 'export') {
+            $config->fileName = 'clicks-' . date('Y-m-d') . '.csv';
+        }
     }
 }

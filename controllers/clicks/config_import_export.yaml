@@ -1,0 +1,10 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+export:
+    title: Export Clicks
+    modelClass: Pbs\Campaign\Models\ClickExport
+    list: $/pbs/campaign/models/click/export_columns.yaml
+    fileName: campaign-clicks.csv
+    redirect: pbs/campaign/clicks
