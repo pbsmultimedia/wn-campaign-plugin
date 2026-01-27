@@ -28,33 +28,8 @@ Route::get('test-exception', function () {
 });
 
 // track opens
-// TODO: handle this on a controller or model?
-Route::get('campaign/open/{hash}/{campaign_id}', function ($campaign_id, $hash) {
-    // validate hash / subscriber
-    $subscriber = \Pbs\Campaign\Models\Subscriber::where('hash', $hash)->first();
+Route::get('campaign/open/{campaignId}/{hash}', 
+    'Pbs\Campaign\Controllers\Trackings@trackOpen'
+);
 
-    // validate campaign
-    $campaign = \Pbs\Campaign\Models\Campaign::find($campaign_id);
-
-    if ($campaign && $subscriber) {
-        // track open
-        $visualization = new \Pbs\Campaign\Models\Visualization();
-        $visualization->subscriber_id = $subscriber->id;
-        $visualization->campaign_id = $campaign->id;
-        $visualization->user_agent = request()->userAgent();
-        $visualization->save();
-    }
-
-    // Return a 1×1 transparent PNG
-    $png = base64_decode(
-        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9YMWZyAAAAAASUVORK5CYII="
-    );
-
-    return response($png)
-        ->header('Content-Type', 'image/png')
-        ->header('Cache-Control', 'no-cache, no-store, must-revalidate')
-        ->header('Pragma', 'no-cache')
-        ->header('Expires', '0');
-});
-
-// unsubscribe is defined on plugin boot because of .. (don't remember..?)
+// unsubscribe is defined on plugin boot because of .. (don't remember..? throttling?)
