@@ -1,18 +1,19 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
-            <h1>Subscribe to newsletter</h1>
+            <h1>{{ 'pbs.campaign::lang.components.subscribe.heading' | trans }}</h1>
+            <p>{{ 'pbs.campaign::lang.components.subscribe.description' | trans }}</p>
             <div id="subscribe-placeholder">
                 <form id="subscribe-form" 
                     method="post" 
                     data-request="onSubscribe"
                     oninput="this.querySelector('button[type=submit]').disabled = !this.checkValidity()">
                     <div class="mb-3">
-                        <label for="subscribe-name" class="form-label">Name</label>
+                        <label for="subscribe-name" class="form-label">{{ 'pbs.campaign::lang.components.subscribe.form.name' | trans }}</label>
                         <input type="text" name="name" class="form-control" id="subscribe-name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="subscribe-email" class="form-label">Email</label>
+                        <label for="subscribe-email" class="form-label">{{ 'pbs.campaign::lang.components.subscribe.form.email' | trans }}</label>
                         <input type="email" 
                             name="email" 
                             class="form-control" 
@@ -21,10 +22,10 @@
                         >
                     </div>
                     <div class="d-grid gap-2 mb-3">
-                        <button type="submit" class="btn btn-primary" disabled>Subscribe</button>
-                    </div>
-                    <p>I respect your <a href="{{ 'privacy-policy' | page }}">privacy</a>. Unsubscribe at any time.</p>
+                        <button type="submit" class="btn btn-primary" disabled>{{ 'pbs.campaign::lang.components.subscribe.form.button' | trans }}</button>
+                    </div>                    
                 </form>
+                <p>{{ 'pbs.campaign::lang.components.subscribe.privacy' | trans({'privacyLink': privacyLink}) }}</p>
             </div>
         </div>
     </div>

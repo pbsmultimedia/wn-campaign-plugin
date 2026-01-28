@@ -1,13 +1,13 @@
-subject = "Confirm your subscription"
+subject = "{{ 'pbs.campaign::lang.components.confirm.mail.subject' | trans }}"
 layout = "newsletter"
 ==
-Please confirm your subscription by clicking the link below:
+{{ 'pbs.campaign::lang.components.confirm.mail.body' | trans }}
 
 {{ confirm_link }}
 
-If you did not request this, you can safely ignore this email.
+{{ 'pbs.campaign::lang.components.confirm.mail.ignore' | trans }}
 ==
-<p>Please confirm your subscription by clicking the button below:</p>
+<p>{{ 'pbs.campaign::lang.components.confirm.mail.body' | trans }}</p>
 
 <table class="action" align="center" width="100%" cellpadding="0" cellspacing="0">
     <tr>
@@ -19,7 +19,7 @@ If you did not request this, you can safely ignore this email.
                             <tr>
                                 <td>
                                     <a href="{{ confirm_link }}" class="button button-primary" target="_blank">
-                                        Confirm Subscription
+                                        {{ 'pbs.campaign::lang.components.confirm.mail.button' | trans }}
                                     </a>
                                 </td>
                             </tr>
@@ -31,4 +31,4 @@ If you did not request this, you can safely ignore this email.
     </tr>
 </table>
 
-<p>If you did not request this, you can safely ignore this email.</p>
+<p>{{ 'pbs.campaign::lang.components.confirm.mail.ignore' | trans }}</p>

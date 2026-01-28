@@ -3,13 +3,13 @@
         <div class="col-md-12">
             {% if success %}
                 <div class="confirmation-message">
-                    <h3>Subscription confirmed!</h3>
-                    <p>Thank you, {{ subscriber.first_name ?: subscriber.email }}. Your subscription has been confirmed.</p>
+                    <h3>{{ 'pbs.campaign::lang.components.confirm.success.heading' | trans }}</h3>
+                    <p>{{ 'pbs.campaign::lang.components.confirm.success.body' | trans({'subscriber': subscriber.first_name ?: subscriber.email}) }}</p>
                 </div>
             {% else %}
                 <div class="error-message">
-                    <h3>Invalid confirmation link</h3>
-                    <p>This confirmation link is invalid or has already been used.</p>
+                    <h3>{{ 'pbs.campaign::lang.components.confirm.error.heading' | trans }}</h3>
+                    <p>{{ 'pbs.campaign::lang.components.confirm.error.body' | trans }}</p>
                 </div>
             {% endif %}
         </div>
