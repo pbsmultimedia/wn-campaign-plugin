@@ -30,10 +30,10 @@ return [
                 'body' => 'Este link de confirmação é inválido ou já foi utilizado.',
             ],
             'mail' => [
-                'subject' => 'Confirme a tua subscrição',
-                'body' => 'Por favor confirme a tua subscrição clicando no botão abaixo:',
+                'subject' => 'Confirma a tua subscrição',
+                'body' => 'Por favor confirma a tua subscrição clicando no botão abaixo:',
                 'button' => 'Confirmar subscrição',
-                'ignore' => 'Se não solicitaste este pedido, podes ignorar este e-mail com segurança.',
+                'ignore' => 'Se não fizeste este pedido, podes ignorar este e-mail com segurança.',
             ],
         ],
     ],
