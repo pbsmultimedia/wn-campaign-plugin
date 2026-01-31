@@ -122,15 +122,20 @@ class NewsletterPreviewService
     {
         // booleans: is_something 
         // https://wintercms.com/docs/develop/docs/architecture/developer-guide
-        try {
-            $newsletter = Newsletter::where('is_public', true)->where('status', NewsletterStatus::Finished)->findOrFail($id);
-        } catch (\Exception $e) {
-            return 'Newsletter not found';
-        }
+        // subject is per campaign, so get campaign first
+        $campaign = Campaign::where('id', $id)
+            ->with('newsletter')
+            ->whereHas('newsletter', function($query) {
+                $query->where('status', NewsletterStatus::Finished);                    
+            })
+            ->firstOrFail();
+
+        $newsletter = $campaign->newsletter;
 
         // check if newsletter is private and hash matches
+        // TODO: this should check if subscriber (hash) is in the recipient list of this campaign
         if (!$newsletter->is_public && !Subscriber::where('hash', $hash)->exists()) {
-            return 'Newsletter not found';
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException;
         }
 
         // TODO: 
@@ -155,7 +160,9 @@ class NewsletterPreviewService
         // template - hardcoded or setting?
         Mail::send('pbs.campaign::newsletter.index', [
             'newsletter' => $newsletter,
-        ]);
+        ], function ($message) use ($campaign) {
+            $message->subject($campaign->subject);
+        });
 
         return $html;
     }

@@ -1,12 +1,6 @@
 <?php namespace Pbs\Campaign\Components;
 
-// can't remember where and what for this was used..?
-
-use File;
 use Cms\Classes\ComponentBase;
-use Pbs\Campaign\Models\Newsletter as NewsletterModel;
-use Winter\Storm\Parse\Syntax\Parser as SyntaxParser;
-use Winter\Storm\Parse\Twig as TwigParser;
 use Pbs\Campaign\Classes\NewsletterPreviewService;
 
 class Newsletter extends ComponentBase
@@ -15,15 +9,19 @@ class Newsletter extends ComponentBase
     {
         return [
             'name'        => 'Newsletter Renderer',
-            'description' => 'Renders a Campaign newsletter by its ID.'
+            'description' => 'Renders a Campaign newsletter by its (campaign) ID.'
         ];
     }
 
     public function onRun()
     {
-        $id = (int) $this->param('id');
-        $hash = $this->param('hash');
-        $newsletter = (new NewsletterPreviewService())->render($id, $hash);
-        return $newsletter;
+        try {
+            $id = (int) $this->param('id');
+            $hash = $this->param('hash');
+            $newsletter = (new NewsletterPreviewService())->render($id, $hash);
+            $this->page['renderedHtml'] = $newsletter;
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return $this->controller->run('404');
+        }
     }
 }

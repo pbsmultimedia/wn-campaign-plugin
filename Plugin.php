@@ -46,8 +46,6 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        // die('at boot');
-
         // Generic exception handler
         \App::error(function (\Exception $exception) {
             // Check if the exception is a throttle exception and log it
@@ -76,55 +74,6 @@ class Plugin extends PluginBase
 
         // Register event subscribers
         Event::subscribe(\Pbs\Campaign\Classes\EventHandlers::class);
-
-        // Register backend assets
-        // seems to make no effect on the mail layout..
-        /*
-        Event::listen('backend.page.beforeDisplay', function($controller, $action, $params) {
-            $controller->addCss('/plugins/pbs/campaign/assets/rounded.css');
-        });
-        */
-
-        /*
-         * Add a field to the MailBrandSetting form
-         * Works, but did not found way to amke it show up in the CSS
-         */
-        /*
-        Event::listen('backend.form.extendFields', function($widget) {
-            // Only target MailBrandSetting form
-            if (!$widget->model instanceof MailBrandSetting) {
-                return;
-            }
-
-            // Add the field if it's not already present
-            $fields = $widget->getFields();
-            if (!isset($fields['button_border_radius'])) {
-                $widget->addFields([
-                    'button_border_radius' => [
-                        'label'   => 'Button border radius',
-                        'comment' => 'Enter a CSS value like "4px" or "0" (include units).',
-                        'type'    => 'text',
-                        'span'    => 'auto',
-                        'default' => '3px',
-                    ],
-                ]);
-            }
-        });
-
-
-        /*
-         * Extend the MailBrandSetting model to persist the new attribute
-         */
-        /*
-        MailBrandSetting::extend(function($model) {
-            // Allow the attribute to be mass assigned/saved
-            if (method_exists($model, 'addFillable')) {
-                $model->addFillable(['button_border_radius']);
-            } else {
-                $model->fillable = array_merge($model->fillable ?? [], ['button_border_radius']);
-            }
-        });
-        */
     }    
 
     public function registerSettings()
