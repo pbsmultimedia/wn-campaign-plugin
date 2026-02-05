@@ -64,21 +64,21 @@ class Recipient extends Model
 
     public function getNameAttribute()
     {
-        return $this->subscriber->name;
+        return $this->subscriber?->name;
     }
 
     public function getFirstNameAttribute()
     {
-        return $this->subscriber->first_name;
+        return $this->subscriber?->first_name;
     }
 
     public function getEmailAttribute()
     {
-        return $this->subscriber->email;
+        return $this->subscriber?->email ?? 'deleted';
     }
     
     public function getHashAttribute()
     {
-        return $this->subscriber->hash;
+        return $this->subscriber?->hash;
     }
 }
