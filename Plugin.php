@@ -101,6 +101,7 @@ class Plugin extends PluginBase
         return [
             // this will display the newsletter on the frontend - still in tests / WIP
             'Pbs\Campaign\Components\Newsletter' => 'newsletter',
+            'Pbs\Campaign\Components\Campaigns' => 'campaigns',
             'Pbs\Campaign\Components\Unsubscribe' => 'unsubscribe',
             'Pbs\Campaign\Components\Subscribe' => 'subscribe',
             'Pbs\Campaign\Components\Confirm' => 'confirm',
