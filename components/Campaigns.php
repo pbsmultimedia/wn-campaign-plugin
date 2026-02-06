@@ -1,5 +1,6 @@
 <?php namespace Pbs\Campaign\Components;
 
+use App;
 use Cms\Classes\ComponentBase;
 use Pbs\Campaign\Models\Campaign;
 use Pbs\Campaign\Enums\CampaignStatus;
@@ -19,7 +20,12 @@ class Campaigns extends ComponentBase
     {
         // not sure about this design decision of subject being defined on the campaign
         // and needing to get the campaign to get the subject..
-        $campaigns = Campaign::where('status', CampaignStatus::Sent)->get();        
+        // and now the locale
+        $campaigns = Campaign::where('status', CampaignStatus::Sent)
+            ->whereHas('newsletter', function($query) {
+                $query->where('locale', App::getLocale());
+            })
+            ->get();                
 
         $this->page['campaigns'] = $campaigns;
     }

@@ -6,6 +6,9 @@ columns:
   id:
     label: ID
     sortable: true
+  locale:
+    label: Locale
+    sortable: true
   title:
     label: Title
     searchable: true

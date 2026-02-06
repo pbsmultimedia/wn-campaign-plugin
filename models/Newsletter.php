@@ -6,6 +6,7 @@ use Log;
 use Cms\Classes\Page;
 use Cms\Classes\Theme;
 use System\Models\MailTemplate;
+use Winter\Translate\Models\Locale;
 use Pbs\Campaign\Enums\NewsletterStatus;
 
 class Newsletter extends Model
@@ -132,6 +133,11 @@ class Newsletter extends Model
         return MailTemplate::where('description', 'LIKE', '%newsletter%')
             ->pluck('code', 'code')
             ->toArray();
+    }
+
+    public function getLocaleOptions()
+    {
+        return Locale::listEnabled();
     }
 }
 

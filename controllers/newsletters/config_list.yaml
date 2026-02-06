@@ -19,6 +19,9 @@ list:
         status:
             label: Status
             sortable: true
+        locale:
+            label: Locale
+            sortable: true
     defaultSort:
         column: id
         direction: desc

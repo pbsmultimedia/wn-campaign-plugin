@@ -21,14 +21,18 @@ fields:
     type: text
     default: draft
     readOnly: true
-    span: left
-    context: update
+    span: left    
+  locale:
+    label: Language
+    type: dropdown
+    options: getLocaleOptions
+    default: en
+    span: right      
   is_public:
     label: Show on archive / public access?
     type: checkbox
-    default: false
-    span: right
-    context: update
+    default: false  
+    span: left    
   content:
     label: Blocks
     type: repeater

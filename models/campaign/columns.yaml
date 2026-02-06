@@ -15,6 +15,9 @@ columns:
         label: Status
         type: partial
         path: $/pbs/campaign/controllers/campaigns/_status_column.htm
+    newsletter[locale]:
+        label: Locale
+        sortable: true
     created_at:
         label: Created at
         type: datetime

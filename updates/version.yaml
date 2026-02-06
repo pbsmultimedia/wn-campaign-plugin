@@ -68,3 +68,7 @@
 "1.0.17":
   - "Create confirm page"
   - create_confirm_page.php
+
+"1.0.18":
+  - "Add locale to newsletter table"
+  - add_locale_to_newsletter_table.php

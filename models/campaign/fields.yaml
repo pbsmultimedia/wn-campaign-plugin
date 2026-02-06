@@ -22,6 +22,12 @@ fields:
     span: left
     default: draft
     readOnly: true
+  newsletter[locale]:
+    label: Locale
+    type: text
+    readOnly: true
+    span: right
+    context: update
     # comment: The status of the campaign. Draft means it is not sent yet.
   # nice to have..!
   # scheduled_at:
