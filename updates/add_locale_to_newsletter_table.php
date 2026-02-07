@@ -9,7 +9,7 @@ class AddLocaleToNewsletterTable extends Migration
     public function up()
     {
         Schema::table('pbs_campaign_newsletters', function (Blueprint $table) {
-            $table->string('locale')->nullable()->after('email');
+            $table->string('locale')->nullable();
         });
     }
 
