@@ -24,6 +24,7 @@ class Campaigns extends ComponentBase
         $campaigns = Campaign::where('status', CampaignStatus::Sent)
             ->whereHas('newsletter', function($query) {
                 $query->where('locale', App::getLocale());
+                $query->where('is_public', true);
             })
             ->get();                
 
