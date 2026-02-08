@@ -15,3 +15,53 @@ This works, but it stops when the terminal is closed.
 A more robust solution is to use a process manager like supervisor or systemd to run the command in the background.
 
 [Using a system daemon](https://wintercms.com/docs/v1.2/docs/services/queues#using-a-system-daemon)
+
+## Supervisor setup
+
+After installing supervisor:
+
+```bash
+sudo apt-get update
+sudo apt-get install supervisor
+```
+
+Create a supervisor config file:
+
+```bash
+sudo nano /etc/supervisor/conf.d/wintercms-queue.conf
+```
+
+Add the following content:
+
+```bash
+[program:wintercms-queue]
+directory=/var/www/html
+process_name=%(program_name)s_%(process_num)02d
+command=php artisan queue:work --sleep=3 --tries=3 --timeout=60
+autostart=true
+autorestart=true
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/var/www/html/storage/logs/queue.log
+user=www-data
+```
+
+Start/stop the queue:
+
+```bash
+supervisorctl start wintercms-queue:*
+supervisorctl stop wintercms-queue:*
+```
+
+Stop the queue:
+
+```bash
+supervisorctl stop wintercms-queue:*
+```
+
+Check the status of the queue:
+
+```bash
+supervisorctl status wintercms-queue:*
+```
+
