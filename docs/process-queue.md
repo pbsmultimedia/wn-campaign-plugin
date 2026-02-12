@@ -31,7 +31,7 @@ Create a supervisor config file:
 sudo nano /etc/supervisor/conf.d/wintercms-queue.conf
 ```
 
-Add the following content:
+Adapt the following content to the server setup:
 
 ```bash
 [program:wintercms-queue]
@@ -44,6 +44,15 @@ numprocs=1
 redirect_stderr=true
 stdout_logfile=/var/www/html/storage/logs/queue.log
 user=www-data
+```
+
+Directory might be other, and full path to PHP might be needed. Check `which php` to get the full path.
+
+Apply the new config:
+
+```bash
+sudo supervisorctl reread
+sudo supervisorctl update
 ```
 
 Start/stop the queue:
@@ -64,4 +73,8 @@ Check the status of the queue:
 ```bash
 supervisorctl status wintercms-queue:*
 ```
+
+To debug:
+
+tail -50 /var/log/supervisor/supervisord.log
 
