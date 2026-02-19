@@ -3,6 +3,7 @@
 use Backend\Classes\Controller;
 use Pbs\Campaign\Models\Link;
 use Pbs\Campaign\Models\Subscriber;
+use Pbs\Campaign\Models\Visualization;
 use Cookie;
 
 class Links extends Controller
@@ -20,6 +21,14 @@ class Links extends Controller
         $link->clicks()->create([
             'subscriber_id' => $subscriber->id,
             'link_id' => $link->id,
+            'user_agent' => request()->userAgent(),
+        ]);
+
+        // Create visualization if it doesn't exist, because if user clicked, user opened the newsletter
+        $visualization = Visualization::firstOrCreate([
+            'subscriber_id' => $subscriber->id,
+            'campaign_id' => $link->campaign_id,
+        ], [
             'user_agent' => request()->userAgent(),
         ]);
 

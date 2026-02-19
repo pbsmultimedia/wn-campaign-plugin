@@ -14,7 +14,7 @@ class Trackings extends Controller
     {
         $hash = $request->route('hash');
         $campaignId = $request->route('campaignId');
-        $userAgent = $request->header('User-Agent') ?? '';        
+        $userAgent = $request->header('User-Agent') ?? '';
 
         // Return pixel immediately for proxies/bots
         if ($this->isProxy($userAgent)) {
@@ -35,8 +35,9 @@ class Trackings extends Controller
         // TODO: move to plugin settings
         $proxyPatterns = [
             // Gmail
-            'ggpht.com',
-            'googleimageproxy',
+            // disabling for now as it uses the same agent for proxy and real users..
+            // 'ggpht.com',
+            // 'googleimageproxy',
             
             // Apple Mail
             'apple-mail-protocol',            

@@ -61,6 +61,7 @@ tabs:
       label: Source
       type: text
       span: right
+      default: 'system'
       readOnly: true
       tab: GDPR
     ip:
