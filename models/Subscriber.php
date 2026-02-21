@@ -37,6 +37,17 @@ class Subscriber extends Model
     ];
 
     /**
+     * @var array Attributes to be cast to Argon (Carbon) instances
+     */
+    public $dates = [
+        'verified_at',
+        'consent_given_at',
+        'unsubscribed_at',
+        'created_at',
+        'updated_at',
+    ];
+
+    /**
      * @var array Attributes to cast to native types
      */
     protected $casts = [
@@ -68,6 +79,13 @@ class Subscriber extends Model
     // this will run everytime..
     public function beforeSave()
     {
+        // Convert empty strings to null for date fields
+        foreach (['verified_at', 'consent_given_at', 'unsubscribed_at'] as $field) {
+            if ($this->{$field} === '') {
+                $this->{$field} = null;
+            }
+        }
+
         // bounce webhook - not implemented yet
         if (!post('Subscriber')) {
             return;
@@ -88,6 +106,10 @@ class Subscriber extends Model
                 $this->unsubscribed_at = null;
                 $this->unsubscribed_by = null;
             } else {
+                // If we are updating from the backend, and unsubscribed_by is NOT set in the post data,
+                // we should probably keep existing values unless they are explicitly being cleared.
+                // However, the original code was resetting them to null.
+                // I'll keep the original logic but ensure empty strings are handled by the loop above.
                 $this->unsubscribed_at = null;
                 $this->unsubscribed_by = null;
             }
