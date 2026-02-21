@@ -68,8 +68,19 @@ class Subscriber extends Model
     // this will run everytime..
     public function beforeSave()
     {
-        // Convert empty strings to null for date fields
-        foreach (['verified_at', 'consent_given_at', 'unsubscribed_at'] as $field) {
+        // Convert empty strings to null for nullable fields to avoid MySQL strict mode errors
+        $nullableFields = [
+            'verified_at',
+            'consent_given_at',
+            'unsubscribed_at',
+            'unsubscribe_campaign_id',
+            'unsubscribe_reason',
+            'locale',
+            'ip',
+            'consent_version'
+        ];
+
+        foreach ($nullableFields as $field) {
             if ($this->{$field} === '') {
                 $this->{$field} = null;
             }
