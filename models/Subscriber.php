@@ -37,17 +37,6 @@ class Subscriber extends Model
     ];
 
     /**
-     * @var array Attributes to be cast to Argon (Carbon) instances
-     */
-    public $dates = [
-        'verified_at',
-        'consent_given_at',
-        'unsubscribed_at',
-        'created_at',
-        'updated_at',
-    ];
-
-    /**
      * @var array Attributes to cast to native types
      */
     protected $casts = [
