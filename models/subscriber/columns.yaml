@@ -1,4 +1,8 @@
 columns:
+    id:
+        label: ID
+        searchable: true
+        sortable: true
     name:
         label: Name
         searchable: true
