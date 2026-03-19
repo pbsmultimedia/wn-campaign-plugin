@@ -44,42 +44,18 @@ class SendCampaignEmail implements ShouldQueue
         $this->recipient = $recipient;
         $this->campaign = $campaign;
 
-        // $this->newsletter = (object) $newsletter->toArray();// $newsletter;
-        // break the connection to the model
-        // why the cast? NOK
-        /*
         $this->newsletter = (object) [
             'title' => $newsletter->title,
-            'content' => $newsletter->content,
-        ];  
-        */
-        // the hack above was NOK, and seems not needed at all (do some tests to confirm)
-        // $this->newsletter = $newsletter;
-        // model replication is needed here, so let's debug
-        Log::info("original newsletter structure: " . $newsletter);
-        
-        Log::info("original newsletter structure: " . print_r($newsletter, true));
-        $this->newsletter = (object) [
-            'title' => $newsletter->title,
-            // 'content' => [$newsletter->content], // Store as JSON string
-            // 'content' => [json_encode($newsletter->content)], 
             'content' => $newsletter->content,
         ];
         
         $this->totalRecipients = $totalRecipients;
         $this->currentRecipient = $currentRecipient;
-
-        // this runs everytime, so pass the newsletter already built
-        // and just replace the recipient
-        Log::info("SendCampaignEmail constructor called");
-        // Log::info($this->newsletter->content);
     }
 
     // handle or fire?
     public function handle()
     {
-        Log::info('Processing subscriber ' . $this->currentRecipient. ' of ' . $this->totalRecipients. ' with new newsletter: ' . print_r($this->newsletter, true));
-
         if (!$this->recipient) {
             return;
         }
@@ -92,10 +68,6 @@ class SendCampaignEmail implements ShouldQueue
         // WTF getting another version of the newsletter?
         // queued jobs are serialized.
         // when handle() begins, Laravel re-hydrates the model fresh from the database..
-        // \Log::info('Class: ' . get_class($this));
-        // \Log::info('Properties: ' . json_encode(get_object_vars($this)));
-
-        // add the name, maybe the hash too instead of twig?
 
         $content = $this->newsletter->content ?? [];
 
@@ -131,9 +103,7 @@ class SendCampaignEmail implements ShouldQueue
         }
 
         $this->newsletter->content = $content;
-
         $this->newsletter->beacon = url("/campaign/open/{$this->campaign->id}/{$this->recipient->hash}");
-
         $this->newsletter->unsubscribe = url("/campaign/unsubscribe/{$this->recipient->hash}");
 
         // preview text
@@ -157,17 +127,6 @@ class SendCampaignEmail implements ShouldQueue
         // Also apply the limit here for consistency, though visual preview might tolerate more
         $previewText = \Str::limit($previewText, 150);
 
-        Log::info("newsletter content at send campaign email");
-        Log::info($this->newsletter->content);
-
-        // print_r($this->newsletter->content);
-        // die();
-
-        // TODO: 
-        // - define the correct template and content
-        // - handle links tracking, how? process links once at higher level (beforeCreate newsletter), and add tracking here?
-        // template OK
-        // links now just need the recipient hash (that should come from the subscriber)
         try {
             $unsubscribeUrl = url("/campaign/unsubscribe/{$this->recipient->hash}");
 

@@ -26,38 +26,8 @@ class Subscribers extends Controller
     public function import()
     {
         $this->pageTitle = 'Import Subscribers';
-        // $this->addJs('/plugins/pbs/campaign/assets/js/importer.js');
         return $this->asExtension('ImportExportController')->import();
     }
-
-    /*
-    public function formExtendFields($form)
-    {
-        $model = $form->model;
-
-        // If model is subscribed, hide unsubscribed_by
-        if ($model->subscribed) {
-            $form->removeField('unsubscribed_by');
-            $form->removeField('unsubscribed_at');
-        }
-    }
-    */
-
-    /*
-    public function update_onSave($recordId)
-    {
-        // save record
-        parent::update_onSave($recordId);
-
-        // get form widget after saving
-        $widget = $this->asExtension('FormController')->formGetWidget();
-
-        // re-render the form
-        return [
-            '#Form' => $widget->render()
-        ];
-    }
-    */
 
     // Will bounce delete the subscriber?
     // No, just set the status to bounced
@@ -66,7 +36,7 @@ class Subscribers extends Controller
     public function bounce()
     {
         /*
-        // reactivate subscribers
+        // reactivate subscribers for testing purposes
         $s = \Pbs\Campaign\Models\Subscriber::where('status', 'bounced')->first();
         $s->status = 'active';
         $s->save();
@@ -101,7 +71,7 @@ class Subscribers extends Controller
             return response('ok', 200);
 
         } catch (\Throwable $e) {
-            // Add exception detail so you know WHY it failed
+            // Add exception detail so you know why it failed
             \Log::error("[Campaign] Bounce error for {$email}: " . $e->getMessage(), [
                 'trace' => $e->getTraceAsString(),
             ]);
