@@ -98,7 +98,7 @@ class Campaigns extends Controller
                 $newsletterProcessed,
                 $totalRecipients, 
                 $i
-            )->delay(now()->addSeconds($delay));
+            )->delay(now()->addSeconds($delay * $i));
 
             $i++;
         }
